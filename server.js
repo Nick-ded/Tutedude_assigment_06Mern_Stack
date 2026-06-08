@@ -12,7 +12,7 @@ const http = require('http');
 const fs   = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = 3001;
 
 // ─── Helper: read and serve a file asynchronously ──────────────────────────
 function serveFile(filePath, statusCode, contentType, res) {

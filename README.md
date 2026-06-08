@@ -1,176 +1,319 @@
-# 🚀 Tutedude Assignment 06 — CleanCo Laundry Web Blast
+<div align="center">
 
-![Crazy server GIF](https://media.giphy.com/media/3o7TKx8zRNWouUbQxy/giphy.gif)
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDhiNno2eTN0cHQxaGZzbjVhazlxd3BuNm9oMnQ5NzVrcTNzbzA1eSZlcD12MV9pbnRlcm5hbGdfaWZfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif" width="600" alt="coding gif"/>
 
-This repo is a raw Node.js web server built by a student, served from scratch, and engineered to be both fun and deeply technical. No fake badges. No fabricated features. Just actual code that runs.
+# 🧺 CleanCo — Node.js Web Server
 
----
+### Assignment 6 · MERN Stack · Tutedude
 
-## 🔥 What this repo actually contains
+![Node.js](https://img.shields.io/badge/Node.js-24.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES2023-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-Semantic-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-Custom_Properties-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Zero Dependencies](https://img.shields.io/badge/Dependencies-ZERO-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-This is not a framework project. It is a hand-coded server that delivers static pages with logic only where it matters.
+> **A hand-crafted HTTP web server built entirely from Node.js core modules — zero npm packages, zero frameworks, pure Node.js power.**
 
-- `server.js` — the whole server
-- `pages/home.html` — the hero page with a student typewriter message
-- `pages/about.html`, `pages/services.html`, `pages/contact.html` — static site pages
-- `pages/404.html` — custom 404 handling
-- `pages/style.css` — the stylesheet for layout, cards, forms, and animation
-
-No Express, no React, no build step. This is the kind of project that makes reviewers say: “They actually understand HTTP.”
-
----
-
-## 🧱 What makes it technically strong
-
-### 1. Raw Node server flow
-
-`server.js` does the following:
-
-- calls `http.createServer()`
-- reads `req.url`
-- strips query strings with `req.url.split('?')[0]`
-- removes trailing slashes with `.replace(/\/$/, '')`
-- uses a route map to resolve URLs to HTML files
-- serves `style.css` with the correct `Content-Type`
-- returns `404` with `pages/404.html`
-- returns `500` if a file read fails
-
-That means the server is handling:
-
-- request parsing
-- routing logic
-- content negotiation
-- error handling
-- response headers
-
-### 2. Real HTTP behavior
-
-The server is not faking anything:
-
-- `200 OK` for valid pages
-- `404 Not Found` for unknown routes
-- `500 Internal Server Error` if file reading fails
-- `text/html` and `text/css` headers are explicit
-
-### 3. Static file serving without a dependency tree
-
-This is the minimal server pattern every junior dev should understand:
-
-- use `path.join(__dirname, ...)`
-- use `fs.readFile()` asynchronously
-- never trust the raw URL path
-- ensure the assets are served with the right MIME type
-
-If a reviewer asks, this repo proves you can write a server without copying an Express tutorial.
+</div>
 
 ---
 
-## 🧠 File architecture map
+## 📺 Live Routes in Action
 
-```text
-server.js
-pages/
-  ├─ home.html
-  ├─ about.html
-  ├─ services.html
-  ├─ contact.html
-  ├─ 404.html
-  └─ style.css
+<div align="center">
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2RjaGszeTdhemd1bGJ0YjJ5dGxoeGZoYThkMHpteTlsMnBzcWNqaCZlcD12MV9pbnRlcm5hbGdfaWZfaWQmY3Q9Zw/26tn33aiTi1jkl6H6/giphy.gif" width="500" alt="server running gif"/>
+</div>
+
+| Route | Status | Page |
+|-------|--------|------|
+| `GET /` | `200 OK` | Redirects → Home |
+| `GET /home` | `200 OK` | 🏠 Landing Page |
+| `GET /about` | `200 OK` | 👥 About Page |
+| `GET /contact` | `200 OK` | 📬 Contact Form |
+| `GET /services` | `200 OK` | ⭐ Services Page |
+| `GET /anything-else` | `404 Not Found` | 🚫 Custom 404 Page |
+
+---
+
+## 🗂️ Project Structure
+
+```
+Tutedude_assigment_06Mern_Stack/
+│
+├── server.js           ← 🚀 Entry point — HTTP server + router
+│
+└── pages/
+    ├── style.css       ← 🎨 Shared CSS (CSS variables, grid, flexbox)
+    ├── home.html       ← 🏠 /home route
+    ├── about.html      ← 👥 /about route
+    ├── contact.html    ← 📬 /contact route
+    ├── services.html   ← ⭐ /services route
+    └── 404.html        ← 🚫 Catch-all error page
 ```
 
-### What each file does
-
-- `server.js` — request router, file loader, response sender
-- `home.html` — hero section, CTA, typewriter effect
-- `style.css` — layout, responsive grid, animations
-- `404.html` — custom fallback with a touch of humor
-
 ---
 
-## ⚙️ Run it locally
+## ⚙️ How It Works — Technical Deep Dive
 
-```powershell
-cd C:\Tutedude_assigment_06Mern_Stack
-node server.js
-```
+<div align="center">
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXptZG8xcjV0b2VxcXplNXRkcXdicXhrbHF6OHdqaGZmd2lhbHd6eCZlcD12MV9pbnRlcm5hbGdfaWZfaWQmY3Q9Zw/RbDKaczqWovIugyJmW/giphy.gif" width="480" alt="deep dive gif"/>
+</div>
 
-Then open one of these:
+### 1. The HTTP Server — `http.createServer()`
 
-- `http://localhost:3000`
-- `http://localhost:3000/home`
-- `http://localhost:3000/about`
-- `http://localhost:3000/services`
-- `http://localhost:3000/contact`
+Node.js exposes a raw TCP server via `http.createServer()`. Every incoming connection triggers the callback with two objects:
 
-You can also see the logs in the terminal for every request.
-
----
-
-## 🛠 Deep dive into the code
-
-### `server.js` highlights
+- **`req` (IncomingMessage)** — the readable stream carrying method, URL, headers, and body
+- **`res` (ServerResponse)** — the writable stream you pipe the HTML response into
 
 ```js
-const url = req.url.split('?')[0].replace(/\/$/, '') || '/';
+const server = http.createServer((req, res) => {
+  // req.url  → "/about"
+  // req.method → "GET"
+});
+server.listen(3001);
 ```
 
-This is the line that turns messy browser requests into clean route keys.
+### 2. The Router — Pure Object Lookup
+
+Instead of a chain of `if/else` blocks, routes are stored in a **plain object** (a hash map). Lookup is **O(1)** — constant time regardless of how many routes you add.
 
 ```js
 const routes = {
-  '/':        { file: 'pages/home.html',    status: 200 },
-  '/home':    { file: 'pages/home.html',    status: 200 },
-  '/about':   { file: 'pages/about.html',   status: 200 },
-  '/contact': { file: 'pages/contact.html', status: 200 },
-  '/services':{ file: 'pages/services.html',status: 200 },
+  '/':         { file: 'pages/home.html',     status: 200 },
+  '/home':     { file: 'pages/home.html',     status: 200 },
+  '/about':    { file: 'pages/about.html',    status: 200 },
+  '/contact':  { file: 'pages/contact.html',  status: 200 },
+  '/services': { file: 'pages/services.html', status: 200 },
 };
+
+const route = routes[url];   // O(1) hash lookup
 ```
 
-This route map is the core of the app. It makes the server predictable and easy to extend.
+### 3. Async File I/O — `fs.readFile()`
+
+HTML files are read using **non-blocking async I/O**. Node's event loop is never blocked — while the OS fetches the file, other requests can be processed concurrently.
+
+```
+Request arrives
+      │
+      ▼
+  Route lookup (sync, ~nanoseconds)
+      │
+      ▼
+  fs.readFile() ──► OS kernel reads file ──► callback fires
+      │                                           │
+      │  (event loop free to handle other         │
+      │   requests during this time ✅)           │
+      └───────────────────────────────────────────►
+                                            res.end(data)
+```
 
 ```js
-serveFile(cssPath, 200, 'text/css', res);
+function serveFile(filePath, statusCode, contentType, res) {
+  fs.readFile(filePath, (err, data) => {  // ← async callback
+    if (err) {
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('500 Internal Server Error');
+      return;
+    }
+    res.writeHead(statusCode, { 'Content-Type': contentType });
+    res.end(data);
+  });
+}
 ```
 
-That line proves the server can handle multiple MIME types, not just HTML.
+### 4. HTTP Status Codes
 
-### `style.css` highlights
+Every response includes a semantically correct status code:
 
-- responsive grid layout with `auto-fit`
-- animated hero section
-- student typewriter effect
-- card hover transitions
-- custom 404 styling
+| Code | Meaning | When Used |
+|------|---------|-----------|
+| `200` | OK | Valid route found, file served |
+| `404` | Not Found | URL doesn't match any route |
+| `500` | Internal Server Error | File exists in route but can't be read |
 
-The CSS is intentionally clean and modern, which makes the HTML pages look polished without extra assets.
+### 5. URL Normalization
+
+Raw URLs can contain query strings (`?ref=google`) or trailing slashes (`/home/`). Both are stripped before routing:
+
+```js
+const url = req.url
+  .split('?')[0]        // remove ?query=string
+  .replace(/\/$/, '')   // remove trailing slash
+  || '/';               // default to root if empty
+```
+
+### 6. Content-Type Headers
+
+The `Content-Type` header tells the browser how to parse the response body. Sending wrong content types breaks rendering:
+
+```js
+// HTML pages
+res.writeHead(200, { 'Content-Type': 'text/html' });
+
+// CSS stylesheet
+res.writeHead(200, { 'Content-Type': 'text/css' });
+```
 
 ---
 
-## 🚨 Why this README should make the repo pop
+## 🎨 CSS Architecture
 
-This repo is attractive because it shows:
+<div align="center">
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXc1ZGduYXFsMThpNmJhZWp3NXFwMDZobjZwMGJkcmd0emh3eDZsbiZlcD12MV9pbnRlcm5hbGdfaWZfaWQmY3Q9Zw/13FrpeVH09Zrb2/giphy.gif" width="400" alt="css magic gif"/>
+</div>
 
-- real backend understanding
-- clean static site delivery
-- custom error handling
-- purposeful code organization
-- no fake decorations, only authentic implementation
+The stylesheet uses **CSS Custom Properties** (variables) for a consistent design system across all pages:
 
-A reviewer who scrolls this repo should see:
+```css
+:root {
+  --primary:   #2563eb;   /* Brand blue */
+  --secondary: #1e40af;   /* Darker blue */
+  --accent:    #f59e0b;   /* Amber highlight */
+  --radius:    10px;      /* Border radius token */
+  --shadow:    0 4px 20px rgba(0,0,0,0.10);
+}
+```
 
-- the code is readable
-- the architecture is intentional
-- the student knows Node internals
-- the site actually runs locally
+Key layout techniques used:
+- **CSS Grid** — responsive card layouts with `auto-fit` + `minmax()`
+- **Flexbox** — navigation bar and two-column page layouts  
+- **CSS transitions** — hover effects on cards and buttons (no JS needed)
+- **Media queries** — single breakpoint at `700px` for mobile stacking
 
 ---
 
-## 💡 If you want to make it even crazier
+## 🚀 Getting Started
 
-- add `package.json` with `start` and `test`
-- add a JS-powered contact form
-- add more pages with route mapping
-- add `favicon.ico` handling properly instead of ignoring it
-- add a production-ready `404` logger
+### Prerequisites
+- [Node.js](https://nodejs.org/) v18+ installed (zero other dependencies)
 
-This README is already loud. The code is already solid. Now it just needs a little GitHub attention.
+### Run the server
+
+```bash
+# Clone the repo
+git clone https://github.com/YOUR_USERNAME/Tutedude_assigment_06Mern_Stack.git
+cd Tutedude_assigment_06Mern_Stack
+
+# Start the server (no npm install needed!)
+node server.js
+```
+
+You'll see:
+
+```
+✅  Server is running at http://localhost:3001
+   Available routes:
+   • http://localhost:3001/home
+   • http://localhost:3001/about
+   • http://localhost:3001/contact
+   • http://localhost:3001/services
+```
+
+Open your browser and visit **[http://localhost:3001/home](http://localhost:3001/home)** 🎉
+
+---
+
+## 🧪 Test All Routes
+
+```bash
+# PowerShell — test every route and see status codes
+@("/home", "/about", "/contact", "/services", "/blah") | ForEach-Object {
+  try   { $r = Invoke-WebRequest "http://localhost:3001$_" -UseBasicParsing; Write-Host "$_ → $($r.StatusCode)" }
+  catch { Write-Host "$_ → 404" }
+}
+```
+
+Expected output:
+```
+/home     → 200
+/about    → 200
+/contact  → 200
+/services → 200
+/blah     → 404
+```
+
+---
+
+## 📋 Request/Response Flow
+
+```
+Browser                          Node.js Server
+   │                                   │
+   │  GET /about HTTP/1.1              │
+   │ ─────────────────────────────────►│
+   │                                   │  url = "/about"
+   │                                   │  routes["/about"] → about.html ✅
+   │                                   │  fs.readFile("pages/about.html")
+   │                                   │       │ (async, non-blocking)
+   │                                   │       ▼
+   │                                   │  callback fires with file data
+   │  HTTP/1.1 200 OK                  │
+   │  Content-Type: text/html          │
+   │  <html>...</html>                 │
+   │ ◄─────────────────────────────────│
+   │                                   │
+   │  GET /style.css                   │
+   │ ─────────────────────────────────►│
+   │  HTTP/1.1 200 OK                  │
+   │  Content-Type: text/css           │
+   │ ◄─────────────────────────────────│
+```
+
+---
+
+## 📁 Modules Used
+
+| Module | Type | Purpose |
+|--------|------|---------|
+| `http` | Built-in | Create the TCP/HTTP server |
+| `fs` | Built-in | Read HTML/CSS files from disk asynchronously |
+| `path` | Built-in | Safely join file paths across OS platforms |
+
+> 📦 **Total npm packages installed: 0**  
+> Everything runs on Node.js core — no `node_modules`, no `package.json` required.
+
+---
+
+## 🌐 Why Pure Node.js (No Express)?
+
+<div align="center">
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjd0bXY3bGc3cHh3dW92NWRoc3IxcGVxY3BtYTY0Y3U2aTg3czlqYyZlcD12MV9pbnRlcm5hbGdfaWZfaWQmY3Q9Zw/LmNwrBhejkK9EFP504/giphy.gif" width="420" alt="why gif"/>
+</div>
+
+This assignment intentionally avoids Express.js to demonstrate understanding of what happens **under the hood**:
+
+| | Pure `http` module | Express.js |
+|--|--|--|
+| Dependencies | 0 | ~50+ |
+| Learning value | ⭐⭐⭐⭐⭐ | ⭐⭐ |
+| Routing | Manual (O(1) map) | Framework-managed |
+| Middleware | Manual | `app.use()` |
+| Control | Total | Abstracted |
+
+Understanding raw Node.js HTTP **makes you better at Express**, because you know what Express is doing for you.
+
+---
+
+## 👨‍💻 Author
+
+<div align="center">
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYm9pNXVob2Y5aHpwamJldHFpNXoyNmpzOXVxdjN3NHZxbThhcXY5eSZlcD12MV9pbnRlcm5hbGdfaWZfaWQmY3Q9Zw/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="200" alt="author gif"/>
+
+**Built with 💙 for Tutedude MERN Stack — Assignment 6**
+
+*"The best way to understand a framework is to build without it first."*
+
+</div>
+
+---
+
+<div align="center">
+
+**⭐ Star this repo if it helped you understand Node.js HTTP servers!**
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGZmMzN4anZsMnhmNW96OWFxMXZrd2wwNXE5OWZvNTdha3dtcTU0aSZlcD12MV9pbnRlcm5hbGdfaWZfaWQmY3Q9Zw/3oEjHWpiVIOGXT5l9m/giphy.gif" width="300" alt="star gif"/>
+
+</div>
