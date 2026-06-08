@@ -12,8 +12,11 @@
 ![CSS3](https://img.shields.io/badge/CSS3-Custom_Properties-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![Zero Dependencies](https://img.shields.io/badge/Dependencies-ZERO-brightgreen?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-coruseassignment06.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://coruseassignment06.netlify.app/)
 
 > **A hand-crafted HTTP web server built entirely from Node.js core modules — zero npm packages, zero frameworks, pure Node.js power.**
+
+🌐 **Live Site → [https://coruseassignment06.netlify.app](https://coruseassignment06.netlify.app/)**
 
 </div>
 
@@ -25,13 +28,15 @@
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2RjaGszeTdhemd1bGJ0YjJ5dGxoeGZoYThkMHpteTlsMnBzcWNqaCZlcD12MV9pbnRlcm5hbGdfaWZfaWQmY3Q9Zw/26tn33aiTi1jkl6H6/giphy.gif" width="500" alt="server running gif"/>
 </div>
 
+> 🔗 **Deployed at: [https://coruseassignment06.netlify.app](https://coruseassignment06.netlify.app/)**
+
 | Route | Status | Page |
 |-------|--------|------|
 | `GET /` | `200 OK` | Redirects → Home |
-| `GET /home` | `200 OK` | 🏠 Landing Page |
-| `GET /about` | `200 OK` | 👥 About Page |
-| `GET /contact` | `200 OK` | 📬 Contact Form |
-| `GET /services` | `200 OK` | ⭐ Services Page |
+| `GET /home` | `200 OK` | 🏠 [Home](https://coruseassignment06.netlify.app/home) |
+| `GET /about` | `200 OK` | 👥 [About](https://coruseassignment06.netlify.app/about) |
+| `GET /contact` | `200 OK` | 📬 [Contact](https://coruseassignment06.netlify.app/contact) |
+| `GET /services` | `200 OK` | ⭐ [Services](https://coruseassignment06.netlify.app/services) |
 | `GET /anything-else` | `404 Not Found` | 🚫 Custom 404 Page |
 
 ---
